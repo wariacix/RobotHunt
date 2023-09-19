@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 668f3ca1810769c47a463c17a6ed0586, type: 3}
+  m_Name: Shotgun
+  m_EditorClassIdentifier: 
+  ammo: 0
+  bulletSpeed: 13
+  reloadTime: 0.525
+  bullets:
+  - {fileID: 4131132596405647706, guid: 3a0d328f1b0fa0a4e8c6afc72506382b, type: 3}
+  - {fileID: 4131132596405647706, guid: 3a0d328f1b0fa0a4e8c6afc72506382b, type: 3}
+  - {fileID: 4131132596405647706, guid: 3a0d328f1b0fa0a4e8c6afc72506382b, type: 3}
+  firePoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ammoSprite: {fileID: 21300000, guid: f2614a4e38535e94e852a8146538a80a, type: 3}
+  isAutomatic: 1
+  textColor: {r: 1, g: 0.17260082, b: 0, a: 1}
+  shootClock: 0
+  isSelected: 0

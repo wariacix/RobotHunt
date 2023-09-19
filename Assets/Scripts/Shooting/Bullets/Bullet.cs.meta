@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b9074c88289b784459de8178eb14f645
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - hitEffect: {fileID: 2948727148762361884, guid: f810fab3bbd289e42a0315472ee0115e,
+      type: 3}
+  - spr: {fileID: 7564093338980547580, guid: 75883dd02e1e1a248adc391bbffe3af6, type: 3}
+  - pistol: {fileID: 21300000, guid: 827e6306b070324419bb4cc23b93a4b2, type: 3}
+  - smg: {fileID: 21300000, guid: d32af8dddd9e64f4cbe18098238984e8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
