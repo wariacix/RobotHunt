@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: a225cb842dce0734eb273b70f61a878a, type: 3}
   techName: Better Pistols I
-  techDescription: desc
+  techDescription: Improved handles and faster mechanisms.
   progress: 0
   maxProgress: 150
   isCompleted: 0

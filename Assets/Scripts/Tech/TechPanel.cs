@@ -31,9 +31,9 @@ public class TechPanel : MonoBehaviour
     {
         int index = TechManager.Instance.techList.FindIndex(o => o == tech);
         tech = Instantiate(tech);
-        TechManager.Instance.techList[index] = tech;
         techText.text = tech.techName;
         techImage.sprite = tech.sprite;
+        TechManager.Instance.techList[index] = tech;
         basePosition = transform.position;
         researchProgressBar.maxValue = tech.maxProgress;
         for (int i = 0; i < techPanelsConnectedTo.Count; i++)
@@ -63,6 +63,7 @@ public class TechPanel : MonoBehaviour
         if (TechManager.Instance.selectedTech == tech) selectedOverlay.SetActive(true);
         else selectedOverlay.SetActive(false);
 
+
         bool isEverythingCompletedFlag = true;
         for (int i = 0; i < techPanelsConnectedFrom.Count; i++)
         {
@@ -73,6 +74,7 @@ public class TechPanel : MonoBehaviour
             blockedOverlay.SetActive(true);
         }
         else blockedOverlay.SetActive(false);
+
 
         if (techPanelsConnectedTo != null)
         {

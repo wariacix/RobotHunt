@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 31c8b874fcd16c94eb03ce8de1f61959, type: 3}
   techName: Basic Electronics
-  techDescription: desc
+  techDescription: Electronics are at heart of all modern weaponry. If we want to
+    defeat the robots, we have to use electronics.
   progress: 0
   maxProgress: 100
   isCompleted: 0

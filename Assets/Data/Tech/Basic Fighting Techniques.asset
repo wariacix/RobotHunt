@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 70d5b15e18d7e4846a75b15c7d0a9ede, type: 3}
   techName: Basic Fighting Techniques
-  techDescription: desc
+  techDescription: Apart from bigger and better weapons the most fundamental weapon
+    is your body. Knowing how to move it is part of the trick.
   progress: 100
   maxProgress: 100
   isCompleted: 1

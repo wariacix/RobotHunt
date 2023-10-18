@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,10 +10,21 @@ public class TechDescription : MonoBehaviour
     [SerializeField] private TextMeshProUGUI isAvailableText;
     [SerializeField] private TextMeshProUGUI descriptionText;
 
-    public void UpdateTexts(string techName, string isAvailable, string description)
+    public void UpdateDescriptionTexts(string techName, string description, bool isAvailable, bool isResearched)
     {
         techNameText.text = techName;
-        isAvailableText.text = isAvailable;
         descriptionText.text = description;
+        if (isAvailable == false && isResearched == false)
+        {
+            isAvailableText.text = "Locked";
+        }
+        else if (isAvailable == true && isResearched == false)
+        {
+            isAvailableText.text = "Available";
+        }
+        else if (isAvailable == true && isResearched == true)
+        {
+            isAvailableText.text = "Researched";
+        }
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: d8b6335f7d99f3945a7a311763928d44, type: 3}
   techName: Basic Metallurgy
-  techDescription: desc
+  techDescription: We have to make weapons and turrets out of something, do we?
   progress: 100
   maxProgress: 100
   isCompleted: 1

@@ -6,9 +6,9 @@ using UnityEngine;
 public class TechManager : MonoBehaviour
 {
     [HideInInspector] public static TechManager Instance;
-    [SerializeField] public List<Tech> techList;
     [HideInInspector] public Tech selectedTech;
     [HideInInspector] public float freeSciencePoints = 0;
+    public List<Tech> techList;
 
     private void Awake()
     {

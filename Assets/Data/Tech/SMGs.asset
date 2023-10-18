@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b209347b8aa176f43b3ceade2403f682, type: 3}
   techName: Machine Guns
-  techDescription: desc
+  techDescription: Fast, deadly & unreliable, just how you like it.
   progress: 0
   maxProgress: 250
   isCompleted: 0

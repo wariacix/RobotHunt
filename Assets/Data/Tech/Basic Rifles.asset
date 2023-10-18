@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e44ac60031db55a4dbbab962e3e126c6, type: 3}
   techName: Basic Rifles
-  techDescription: desc
+  techDescription: Making makeshift rifles will greatly increase our possibilities
+    in terms of weaponry.
   progress: 0
   maxProgress: 200
   isCompleted: 0

@@ -117,7 +117,6 @@ public class WaveManager : NetworkBehaviour
     private void ClientAddSciencePoints(float amount)
     {
         if (TechManager.Instance != null) TechManager.Instance.AddSciencePoints(amount);
-        else Debug.Log("co do");
     }
 
     [ServerCallback]

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: a225cb842dce0734eb273b70f61a878a, type: 3}
   techName: Pistols
-  techDescription: desc
+  techDescription: The most basic gun imaginable - a pistol. A good weapon if there's
+    nothing fancier available.
   progress: 100
   maxProgress: 100
   isCompleted: 1

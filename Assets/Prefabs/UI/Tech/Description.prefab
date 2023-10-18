@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6531022233529755171}
   - component: {fileID: 4839656477227355676}
   m_Layer: 0
-  m_Name: TechNameText (1)
+  m_Name: IsLockedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,6 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5172026128538594691}
+  - component: {fileID: 9185902296509843407}
   m_Layer: 0
   m_Name: Description
   m_TagString: Untagged
@@ -184,6 +185,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9185902296509843407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5172026128538594748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1cd754f21b7da4bb844dbee511ab35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  techNameText: {fileID: 5028658368864243136}
+  isAvailableText: {fileID: 4839656477227355676}
+  descriptionText: {fileID: 4784190550339497210}
 --- !u!1 &5172026129028447029
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +896,7 @@ GameObject:
   - component: {fileID: 4907086570679768923}
   - component: {fileID: 4784190550339497210}
   m_Layer: 0
-  m_Name: DescriptionText (1)
+  m_Name: DescriptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -25,7 +25,6 @@ public class cam : NetworkBehaviour
             Debug.LogWarning("PlayerCamera: Could not find a camera in scene with 'MainCamera' tag.");
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.position = pos.position + Vector3.back * 10f;

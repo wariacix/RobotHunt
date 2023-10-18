@@ -40,7 +40,7 @@ public class PlayerController : NetworkBehaviour
         Health health = gameObject.GetComponent<Health>();
         UIManager.Instance.hpText.text = health.hp + "/" + health.maxhp;
         Health baseHealth = GameManager.Instance.BaseInstance.GetComponent<Health>();
-        UIManager.Instance.baseText.text = "Base: " + baseHealth.hp + "/" + baseHealth.maxhp;
+        UIManager.Instance.baseText.text = baseHealth.hp + "/" + baseHealth.maxhp;
 
         if (isLocalPlayer && UIManager.Instance.IsBuying == true && (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {

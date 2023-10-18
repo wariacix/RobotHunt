@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b209347b8aa176f43b3ceade2403f682, type: 3}
   techName: Better Machine Guns I
-  techDescription: desc
+  techDescription: Better handles and quicker firing mechanism greatly improve this
+    weapon's capabilities.
   progress: 0
   maxProgress: 300
   isCompleted: 0

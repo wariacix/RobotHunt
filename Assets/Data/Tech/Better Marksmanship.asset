@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5170680e7eb5e21418dc58b4844c10a0, type: 3}
   techName: Better Marksmanship
-  techDescription: desc
+  techDescription: Having a good weapon is one thing, knowing how to shoot it is
+    the other.
   progress: 0
   maxProgress: 150
   isCompleted: 0
