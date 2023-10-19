@@ -8,6 +8,7 @@ public class TechManager : MonoBehaviour
     [HideInInspector] public static TechManager Instance;
     [HideInInspector] public Tech selectedTech;
     [HideInInspector] public float freeSciencePoints = 0;
+    [HideInInspector] public float sciencePointsPerWave = 25;
     public List<Tech> techList;
 
     private void Awake()

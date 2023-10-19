@@ -75,7 +75,7 @@ public class WaveManager : NetworkBehaviour
                 ServerSpawnMarkers(10 * (waveId + 1), NetworkServer.connections[i].identity.transform.position);
                 ClientSpawnMarkers(10 * (waveId + 1), NetworkServer.connections[i].identity.transform.position);
 
-                ClientAddSciencePoints(25f);
+                ClientAddSciencePoints(TechManager.Instance.sciencePointsPerWave);
 
                 Health hpSystem = NetworkServer.connections[i].identity.gameObject.GetComponent<Health>();
                 if (hpSystem.hp < hpSystem.maxhp)
