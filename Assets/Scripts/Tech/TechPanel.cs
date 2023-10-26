@@ -27,7 +27,7 @@ public class TechPanel : MonoBehaviour
     private List<LineRenderer> lines = new List<LineRenderer>();
 
     #region Unity Methods
-    private void Awake()
+    private void Start()
     {
         int index = TechManager.Instance.techList.FindIndex(o => o == tech);
         tech = Instantiate(tech);
@@ -40,7 +40,7 @@ public class TechPanel : MonoBehaviour
         {
             if (techPanelsConnectedTo[i] != null)
             {
-                GameObject line = Instantiate(new GameObject(), TechTreeManager.Instance.transform);
+                GameObject line = Instantiate(new GameObject(), rightPoint.transform);
                 lines.Add(line.AddComponent<LineRenderer>());
                 techPanelsConnectedTo[i].techPanelsConnectedFrom.Add(this);
             }
@@ -54,6 +54,21 @@ public class TechPanel : MonoBehaviour
 
     private void Update()
     {
+        if (techPanelsConnectedTo != null)
+        {
+            for (int i = 0; i < lines.Count; i++)
+            {
+                lines[i].startColor = Color.green;
+                lines[i].endColor = Color.green;
+                lines[i].positionCount = 4;
+                lines[i].SetPosition(0, new Vector3(rightPoint.position.x, rightPoint.position.y, -1.5f));
+                lines[i].SetPosition(1, new Vector3((rightPoint.position.x + techPanelsConnectedTo[i].leftPoint.position.x) / 2, rightPoint.position.y, -1.5f));
+                lines[i].SetPosition(2, new Vector3((rightPoint.position.x + techPanelsConnectedTo[i].leftPoint.position.x) / 2, techPanelsConnectedTo[i].leftPoint.position.y, -1.5f));
+                lines[i].SetPosition(3, new Vector3(techPanelsConnectedTo[i].leftPoint.position.x, techPanelsConnectedTo[i].leftPoint.position.y, -1.5f));
+                lines[i].widthMultiplier = 0.125f;
+            }
+        }
+
         researchProgressBar.value = tech.progress;
         progressStatusText.text = tech.progress + "/" + tech.maxProgress;
 
@@ -74,22 +89,6 @@ public class TechPanel : MonoBehaviour
             blockedOverlay.SetActive(true);
         }
         else blockedOverlay.SetActive(false);
-
-
-        if (techPanelsConnectedTo != null)
-        {
-            for (int i = 0; i < lines.Count; i++)
-            {
-                lines[i].startColor = Color.green;
-                lines[i].endColor = Color.green;
-                lines[i].positionCount = 4;
-                lines[i].SetPosition(0, new Vector3(rightPoint.position.x, rightPoint.position.y, -1.5f));
-                lines[i].SetPosition(1, new Vector3((rightPoint.position.x + techPanelsConnectedTo[i].leftPoint.position.x) / 2, rightPoint.position.y, -1.5f));
-                lines[i].SetPosition(2, new Vector3((rightPoint.position.x + techPanelsConnectedTo[i].leftPoint.position.x) / 2, techPanelsConnectedTo[i].leftPoint.position.y, -1.5f));
-                lines[i].SetPosition(3, new Vector3(techPanelsConnectedTo[i].leftPoint.position.x, techPanelsConnectedTo[i].leftPoint.position.y, -1.5f));
-                lines[i].widthMultiplier = 0.125f;
-            }
-        }
     }
     #endregion
 

@@ -35,17 +35,20 @@ public class TechManager : MonoBehaviour
         {
             freeSciencePoints += selectedTech.progress - selectedTech.maxProgress;
             selectedTech.progress = selectedTech.maxProgress;
-            selectedTech.isCompleted = true;
-            for (int i = 0; i < TechTreeManager.Instance.techPanels.Count; i++)
+            if (selectedTech.isCompleted == false)
             {
-                if (TechTreeManager.Instance.techPanels[i].tech == selectedTech)
+                for (int i = 0; i < TechTreeManager.Instance.techPanels.Count; i++)
                 {
-                    if (TechTreeManager.Instance.techPanels[i].gameObject.GetComponent<RootTechReward>() != null)
+                    if (TechTreeManager.Instance.techPanels[i].tech == selectedTech)
                     {
-                        TechTreeManager.Instance.techPanels[i].gameObject.GetComponent<RootTechReward>().AssignTechReward();
+                        if (TechTreeManager.Instance.techPanels[i].gameObject.GetComponent<RootTechReward>() != null)
+                        {
+                            TechTreeManager.Instance.techPanels[i].gameObject.GetComponent<RootTechReward>().AssignTechReward();
+                        }
                     }
                 }
             }
+            selectedTech.isCompleted = true;
         }
     }
 
