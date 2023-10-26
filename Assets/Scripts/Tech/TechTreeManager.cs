@@ -51,10 +51,6 @@ public class TechTreeManager : MonoBehaviour
         }
 
         transform.position = mainTransform.position + (Vector3)offset + new Vector3(0, 0, -1);
-        foreach (TechPanel panel in techPanels)
-        {
-            panel.UpdateLines();
-        }
 
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
