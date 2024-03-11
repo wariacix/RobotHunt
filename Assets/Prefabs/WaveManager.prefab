@@ -84,8 +84,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 306bce362b1a2b743911e0bb378929b2, type: 2}
   - {fileID: 11400000, guid: 2400345d45fe7514687299bf9aec9f57, type: 2}
   - {fileID: 11400000, guid: 306bce362b1a2b743911e0bb378929b2, type: 2}
-  testPrefab: {fileID: 3936348940621800240, guid: 0fe006e2936e2c749b8e3426975ae066,
-    type: 3}
   waveId: 0
   waveTimer: 0
 --- !u!114 &7233068889956660928
@@ -103,5 +101,5 @@ MonoBehaviour:
   sceneId: 0
   _assetId: 1955459933
   serverOnly: 0
-  visible: 0
+  visible: 2
   hasSpawned: 0

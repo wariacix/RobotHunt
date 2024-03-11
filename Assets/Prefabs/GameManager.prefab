@@ -49,26 +49,22 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  CameraInstance: {fileID: 192621592515335072, guid: 28ef4766d3e582a4bbbbd837b218889b,
-    type: 3}
-  BaseInstance: {fileID: 6299956235007977207, guid: 3aee86e8413f2f3488bfbb4fa4e5d2ff,
-    type: 3}
-  CanvasInstance: {fileID: 3057409503100367093, guid: 37489c2643e446542a7f76655d625005,
-    type: 3}
-  NavMeshInstance: {fileID: 4351202106018668190, guid: 3f80c361d92c65f4d92ae6dd1f229d22,
-    type: 3}
+  PlayerInstances: []
+  buttons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  BaseInstance: {fileID: 0}
+  NavMeshInstance: {fileID: 0}
   MarkerPrefab: {fileID: 5694761479912276932, guid: 7f91daf6f4788cb4cbc8ebb087af85c0,
     type: 3}
-  waveTimeUIText: {fileID: 3134509127090582844, guid: db50f6abdd6544549a8232592f3bdbc3,
-    type: 3}
-  goldUIText: {fileID: 1357297480771877242, guid: 5b6874ffa1208604db008438d738ac97,
-    type: 3}
+  LocalPlayerObject: {fileID: 0}
   waveTime: 20
-  shop:
-  - {fileID: 6372555005037676911, guid: 7ed85ec52cf6a7944ae465abf99fa8b3, type: 3}
-  - {fileID: 3149737570086192315, guid: 39916ad008fd24f47a8b2e83e7f159b5, type: 3}
-  - {fileID: 3149737570086192315, guid: fdda59a94f5c548429362d0c900adb23, type: 3}
-  gold: 0
 --- !u!82 &7705109361786429079
 AudioSource:
   m_ObjectHideFlags: 0

@@ -25,6 +25,7 @@ public class ShootingComponent : NetworkBehaviour
         weapons[0].isSelected = true;
     }
 
+    [ClientCallback]
     private void Update()
     {
         if (isLocalPlayer == true && UIManager.Instance.IsBuying == false)
@@ -83,7 +84,7 @@ public class ShootingComponent : NetworkBehaviour
                     {
                         if (weapons[i].shootClock >= weapons[i].reloadTime && weapons[i].ammo > 0)
                         {
-                            weapons[i].ammo--;
+                            DecrementAmmo(i);
                             weapons[i].shootClock = 0;
                             Shoot(bulletPrefabIndex, weapons[i].bullets.Count, weapons[i].bulletSpeed);
                         }
@@ -92,7 +93,7 @@ public class ShootingComponent : NetworkBehaviour
                     {
                         if (weapons[i].ammo > 0)
                         {
-                            weapons[i].ammo--;
+                            DecrementAmmo(i);
                             Shoot(bulletPrefabIndex, weapons[i].bullets.Count, weapons[i].bulletSpeed);
                         }
                     }
@@ -100,6 +101,12 @@ public class ShootingComponent : NetworkBehaviour
                 }
             }
         }
+    }
+
+    [Command]
+    private void DecrementAmmo(int index)
+    {
+        weapons[index].ammo--;
     }
 
     [ClientCallback]

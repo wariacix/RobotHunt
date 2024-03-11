@@ -15,81 +15,30 @@ public class PlayerShop : NetworkBehaviour
     private void Start()
     {
         if (!isLocalPlayer) return;
-        GameManager.Instance.buttons[0].onClick.AddListener(Buy1);
-        GameManager.Instance.buttons[1].onClick.AddListener(Buy2);
-        GameManager.Instance.buttons[2].onClick.AddListener(Buy3);
-        GameManager.Instance.buttons[3].onClick.AddListener(Buy4);
-        GameManager.Instance.buttons[4].onClick.AddListener(Buy5);
+        GameManager.Instance.buttons[0].onClick.AddListener(delegate { BuyAmmo(100, 90, 0); });
+        GameManager.Instance.buttons[1].onClick.AddListener(delegate { BuyAmmo(150, 90, 1); });
+        GameManager.Instance.buttons[2].onClick.AddListener(delegate { BuyAmmo(250, 20, 2); });
+        GameManager.Instance.buttons[3].onClick.AddListener(delegate { BuyAmmo(350, 10, 3); });
+        GameManager.Instance.buttons[4].onClick.AddListener(delegate { BuyAmmo(400, 5, 4); });
         GameManager.Instance.buttons[5].onClick.AddListener(Buy6);
         GameManager.Instance.buttons[6].onClick.AddListener(Buy7);
         GameManager.Instance.buttons[7].onClick.AddListener(Buy8);
     }
 
     [ClientCallback]
-    public void Buy1()
+    public void BuyAmmo(int price, int amount, int weaponIndex)
     {
-        if (gold >= 100)
+        if (gold >= price)
         {
             ShootingComponent controller = gameObject.GetComponent<ShootingComponent>();
-            if (controller.weapons.Count > 0)
+            if (controller.weapons.Count > weaponIndex)
             {
-                controller.weapons[0].ammo += 90;
-                RemoveGoldCmd(100);
+                AddAmmoCmd(weaponIndex, amount);
+                RemoveGoldCmd(price);
             }
         }
     }
-    [ClientCallback]
-    public void Buy2()
-    {
-        if (gold >= 150)
-        {
-            ShootingComponent controller = gameObject.GetComponent<ShootingComponent>();
-            if (controller.weapons.Count > 1)
-            {
-                controller.weapons[1].ammo += 90;
-                RemoveGoldCmd(150);
-            }
-        }
-    }
-    [ClientCallback]
-    public void Buy3()
-    {
-        if (gold >= 250)
-        {
-            ShootingComponent controller = gameObject.GetComponent<ShootingComponent>();
-            if (controller.weapons.Count > 2)
-            {
-                controller.weapons[2].ammo += 20;
-                RemoveGoldCmd(250);
-            }
-        }
-    }
-    [ClientCallback]
-    public void Buy4()
-    {
-        if (gold >= 350)
-        {
-            ShootingComponent controller = gameObject.GetComponent<ShootingComponent>();
-            if (controller.weapons.Count > 3)
-            {
-                controller.weapons[3].ammo += 10;
-                RemoveGoldCmd(350);
-            }
-        }
-    }
-    [ClientCallback]
-    public void Buy5()
-    {
-        if (gold >= 400)
-        {
-            ShootingComponent controller = gameObject.GetComponent<ShootingComponent>();
-            if (controller.weapons.Count > 4)
-            {
-                controller.weapons[4].ammo += 5;
-                RemoveGoldCmd(400);
-            }
-        }
-    }
+
     [ClientCallback]
     public void Buy6()
     {
@@ -104,6 +53,7 @@ public class PlayerShop : NetworkBehaviour
             RemoveGoldCmd(800);
         }
     }
+
     [ClientCallback]
     public void Buy7()
     {
@@ -118,6 +68,7 @@ public class PlayerShop : NetworkBehaviour
             RemoveGoldCmd(1650);
         }
     }
+
     [ClientCallback]
     public void Buy8()
     {
@@ -131,6 +82,13 @@ public class PlayerShop : NetworkBehaviour
             placeable.prefabIndex = NetworkManager.singleton.spawnPrefabs.FindIndex(o => o == shop[2]);
             RemoveGoldCmd(2500);
         }
+    }
+
+    [Command]
+    private void AddAmmoCmd(int weaponIndex, int amount)
+    {
+        ShootingComponent controller = gameObject.GetComponent<ShootingComponent>();
+        controller.weapons[weaponIndex].ammo += amount;
     }
 
     [Command]

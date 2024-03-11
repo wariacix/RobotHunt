@@ -9,7 +9,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Game/New Weapon")]
 public class Weapon : ScriptableObject
 {
-    [SerializeField] public int ammo = 60;
+    [SerializeField] [SyncVar] public int ammo = 60;
     [SerializeField] public float bulletSpeed;
     [SerializeField] public float reloadTime;
     [SerializeField] public List<GameObject> bullets;
