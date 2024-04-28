@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 
 public class AmmoBuyable : RootBuyable
 {
@@ -15,6 +14,6 @@ public class AmmoBuyable : RootBuyable
 
     public override void OnBuy()
     {
-        NetworkClient.localPlayer.gameObject.GetComponent<ShootingComponent>();
+        GameManager.Instance.PlayerObject.GetComponent<ShootingComponent>();
     }
 }

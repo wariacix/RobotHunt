@@ -1,13 +1,11 @@
-using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioObject : NetworkBehaviour
+public class AudioObject : MonoBehaviour
 {
     private float timeToDestroy = 0;
 
-    [ServerCallback]
     private void Update()
     {
         if (timeToDestroy < 2.5f)
@@ -16,13 +14,7 @@ public class AudioObject : NetworkBehaviour
         }
         else
         {
-            RpcDestroy();
+            Destroy(gameObject);
         }
-    }
-
-    [ClientRpc]
-    private void RpcDestroy()
-    {
-        Destroy(gameObject);
     }
 }

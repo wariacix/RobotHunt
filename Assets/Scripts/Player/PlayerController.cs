@@ -1,4 +1,3 @@
-using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(ShootingComponent))]
-public class PlayerController : NetworkBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Range(0.1f, 12.0f)]
     public float movingSpeed = 5f;
@@ -17,29 +16,15 @@ public class PlayerController : NetworkBehaviour
     Vector2 movement;
     Vector2 mousePos;
 
-    public override void OnStartAuthority()
-    {
-        this.enabled = true;
-        cam.Instance.pos = transform;
-    }
 
     private void Awake()
     {
-        GameManager.Instance.PlayerInstances.Add(gameObject);
-    }
-
-    [ServerCallback]
-    private void Start()
-    {
-        for (int i = 0; i < TechTreeManager.Instance.techPanels.Count; i++)
-        {
-            TechTreeManager.Instance.techPanels[i].gameObject.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
-        }
+        this.enabled = true;
+        CameraScript.Instance.pos = transform;
     }
 
     void Update()
     {
-        if (!isLocalPlayer) return;
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         ShootingComponent shooting = gameObject.GetComponent<ShootingComponent>();
@@ -51,11 +36,11 @@ public class PlayerController : NetworkBehaviour
         Health baseHealth = GameManager.Instance.BaseInstance.GetComponent<Health>();
         UIManager.Instance.baseText.text = baseHealth.hp + "/" + baseHealth.maxhp;
 
-        if (isLocalPlayer && UIManager.Instance.IsBuying == true && (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
+        if (UIManager.Instance.IsBuying == true && (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape)))
         {
             UIManager.Instance.IsBuying = false;
         }
-        else if (isLocalPlayer && (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.E)))
+        else if ((Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown(KeyCode.E)))
         {
             UIManager.Instance.IsBuying = true;
         }
@@ -63,9 +48,6 @@ public class PlayerController : NetworkBehaviour
 
     void FixedUpdate()
     {
-        if (!isLocalPlayer) return;
-        GameManager.Instance.LocalPlayerObject = gameObject;
-        if (GameManager.Instance.LocalPlayerObject != null ) { Debug.Log("Should work"); }
         if (movement.x != 0 | movement.y != 0)
         {
             playerRb.MovePosition(playerRb.position + movement * movingSpeed * Time.fixedDeltaTime);
@@ -82,7 +64,6 @@ public class PlayerController : NetworkBehaviour
     }
 
 
-    [ServerCallback]
     void OnCollisionEnter2D(Collision2D collision)
     {
         playerRb.velocity = new Vector2(0f, 0f);

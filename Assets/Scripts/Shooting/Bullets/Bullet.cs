@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 
-public class Bullet : NetworkBehaviour
+public class Bullet : MonoBehaviour
 {
     public GameObject hitEffect;
     public int bulletDamage;
@@ -18,7 +17,6 @@ public class Bullet : NetworkBehaviour
         Physics2D.IgnoreLayerCollision(20, 20);
     }
 
-    [ServerCallback]
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 21)
@@ -30,14 +28,12 @@ public class Bullet : NetworkBehaviour
             if (collision.gameObject.CompareTag("Enemy"))
             {
                 Health enemyHp = collision.gameObject.GetComponent<Health>();
-                enemyHp.Hit(bulletDamage, playerNetId);
+                enemyHp.Hit(bulletDamage);
             }
 
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             SpriteRenderer sprEff = effect.GetComponent<SpriteRenderer>();
             sprEff.color = effectColor;
-            NetworkIdentity identity = effect.GetComponent<NetworkIdentity>();
-            NetworkServer.Spawn(effect, identity.assetId);
 
             if (collision.gameObject.CompareTag("Enemy"))
             {
@@ -47,15 +43,14 @@ public class Bullet : NetworkBehaviour
                 markerRect.position = transform.position;
                 markerScr.SetString("-" + bulletDamage);
                 markerScr.color = Color.red;
-                ClientCreateHitMarker();
+                CreateHitMarker();
             }
             Destroy(effect, 0.4f);
             Destroy(gameObject);
         }
     }
 
-    [ClientRpc]
-    protected void ClientCreateHitMarker()
+    protected void CreateHitMarker()
     {
         GameObject marker = Instantiate(GameManager.Instance.MarkerPrefab, UIManager.Instance.CanvasInstance.transform);
         Marker markerScr = marker.GetComponent<Marker>();

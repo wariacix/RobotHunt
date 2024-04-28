@@ -2,9 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 
-public abstract class RootBuyable : NetworkBehaviour
+public abstract class RootBuyable : MonoBehaviour
 {
     [SerializeField] private int price;
 

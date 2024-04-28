@@ -2,14 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 using static UnityEngine.EventSystems.EventTrigger;
 
 [Serializable]
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Game/New Weapon")]
 public class Weapon : ScriptableObject
 {
-    [SerializeField] [SyncVar] public int ammo = 60;
+    [SerializeField] public int ammo = 60;
     [SerializeField] public float bulletSpeed;
     [SerializeField] public float reloadTime;
     [SerializeField] public List<GameObject> bullets;

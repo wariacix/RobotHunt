@@ -1,4 +1,3 @@
-using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class Enemy : NetworkBehaviour
+public class Enemy : MonoBehaviour
 {
     public NavMeshAgent Agent;
     public int damage;
@@ -17,7 +16,7 @@ public class Enemy : NetworkBehaviour
     private Health hpComponent;
     private RectTransform hpRectTransform;
     private float hitClock;
-    [SyncVar] private Vector3 target;
+    private Vector3 target;
 
     private void Update()
     {
@@ -51,18 +50,15 @@ public class Enemy : NetworkBehaviour
         Agent.SetDestination(target);
     }
 
-    [ServerCallback]
     private void CalculateTarget()
     {
         float distance = 0f;
-        Vector3 chosenPos = new Vector2(99999,99999);
-        for (int i = 0; i < NetworkServer.connections.Count; i++)
+        Vector3 chosenPos = new Vector2(99999, 99999);
+
+        if (Vector3.Distance(GameManager.Instance.PlayerObject.transform.position, transform.position) > distance && Vector3.Distance(GameManager.Instance.PlayerObject.transform.position, transform.position) < followRange)
         {
-            if (NetworkServer.connections[i].identity.gameObject != null && Vector3.Distance(NetworkServer.connections[i].identity.transform.position, transform.position) > distance && Vector3.Distance(NetworkServer.connections[i].identity.transform.position, transform.position) < followRange)
-            {
-                distance = Vector3.Distance(NetworkServer.connections[i].identity.transform.position, transform.position);
-                chosenPos = NetworkServer.connections[i].identity.transform.position;
-            }
+            distance = Vector3.Distance(GameManager.Instance.PlayerObject.transform.position, transform.position);
+            chosenPos = GameManager.Instance.PlayerObject.transform.position;
         }
 
         if (Vector3.Distance(chosenPos, transform.position) < Vector3.Distance(transform.position, GameManager.Instance.BaseInstance.transform.position))

@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Mirror;
 
-public class GameManager : NetworkBehaviour
+public class GameManager : MonoBehaviour
 {
     [HideInInspector] public List<GameObject> PlayerInstances;
     public List<Button> buttons;
@@ -14,7 +13,7 @@ public class GameManager : NetworkBehaviour
     public GameObject NavMeshInstance;
     public static GameManager Instance;
     public GameObject MarkerPrefab;
-    [HideInInspector] public GameObject LocalPlayerObject;
+    [SerializeField] public GameObject PlayerObject;
     [SerializeField] private float waveTime;
 
     private void Awake()
@@ -31,14 +30,13 @@ public class GameManager : NetworkBehaviour
 
     public static void Exit()
     {
-        NetworkClient.Disconnect();
         Application.Quit();
     }
 
 
     private void Update()
     {
-        UIManager.Instance.goldUIText.text = NetworkClient.localPlayer.gameObject.GetComponent<PlayerShop>().gold.ToString();
+        UIManager.Instance.goldUIText.text = PlayerObject.GetComponent<PlayerShop>().gold.ToString();
         if (WaveManager.Instance.waveTimer <= 0)
         {
             UIManager.Instance.waveTimeUIText.text = "Wave " + (WaveManager.Instance.waveId + 1) + ": Spawning enemies...";

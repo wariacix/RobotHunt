@@ -1,9 +1,8 @@
-using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingComponent : NetworkBehaviour
+public class ShootingComponent : MonoBehaviour
 {
     [SerializeField] public List<Weapon> weapons;
     [SerializeField] public List<Transform> firePoints;
@@ -25,10 +24,9 @@ public class ShootingComponent : NetworkBehaviour
         weapons[0].isSelected = true;
     }
 
-    [ClientCallback]
     private void Update()
     {
-        if (isLocalPlayer == true && UIManager.Instance.IsBuying == false)
+        if (UIManager.Instance.IsBuying == false)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -78,23 +76,21 @@ public class ShootingComponent : NetworkBehaviour
                     UIManager.Instance.ammoText.color = weapons[i].textColor;
                     UIManager.Instance.ammoText.text = weapons[i].ammo.ToString();
 
-                    int bulletPrefabIndex = NetworkManager.singleton.spawnPrefabs.FindIndex(o => o == weapons[i].bullets[0]);
-
                     if (weapons[i].isSelected && weapons[i].isAutomatic && Input.GetButton("Fire1"))
                     {
                         if (weapons[i].shootClock >= weapons[i].reloadTime && weapons[i].ammo > 0)
                         {
-                            DecrementAmmo(i);
+                            weapons[i].ammo--;
                             weapons[i].shootClock = 0;
-                            Shoot(bulletPrefabIndex, weapons[i].bullets.Count, weapons[i].bulletSpeed);
+                            Shoot(weapons[i].bullets, weapons[i].bulletSpeed);
                         }
                     }
                     else if (weapons[i].isSelected && Input.GetButtonDown("Fire1"))
                     {
                         if (weapons[i].ammo > 0)
                         {
-                            DecrementAmmo(i);
-                            Shoot(bulletPrefabIndex, weapons[i].bullets.Count, weapons[i].bulletSpeed);
+                            weapons[i].ammo--;
+                            Shoot(weapons[i].bullets, weapons[i].bulletSpeed);
                         }
                     }
                     weapons[i].shootClock += Time.deltaTime;
@@ -103,49 +99,15 @@ public class ShootingComponent : NetworkBehaviour
         }
     }
 
-    [Command]
-    private void DecrementAmmo(int index)
+    public void Shoot(List<GameObject> bulletPrefab, float bulletSpeed)
     {
-        weapons[index].ammo--;
-    }
-
-    [ClientCallback]
-    public void Shoot(int bulletPrefabIndex, int numberOfBullets, float bulletSpeed)
-    {
-        uint playerNetId = NetworkClient.localPlayer.netId;
-        CommandShoot(bulletPrefabIndex, numberOfBullets, bulletSpeed, playerNetId);
-    }
-
-    [Command]
-    public void CommandShoot(int bulletPrefabIndex, int numberOfBullets, float bulletSpeed, uint playerNetId)
-    {
-        for (int i = 0; i < numberOfBullets; i++)
+        for (int i = 0; i < bulletPrefab.Count; i++)
         {
-            GameObject bulletPrefab = NetworkManager.singleton.spawnPrefabs[bulletPrefabIndex].gameObject;
-            GameObject bullet = Instantiate(bulletPrefab, firePoints[i].position, firePoints[i].rotation);
+            GameObject bullet = Instantiate(bulletPrefab[i], firePoints[i].position, firePoints[i].rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(firePoints[i].up * bulletSpeed, ForceMode2D.Impulse);
             Bullet bulletScript = bullet.GetComponent<Bullet>();
-            bulletScript.playerNetId = playerNetId;
             GameObject audioObjectInstantiated = Instantiate(bulletScript.audioObject, firePoints[i].position, firePoints[i].rotation);
-            NetworkServer.Spawn(audioObjectInstantiated);
-            NetworkServer.Spawn(bullet);
-        }
-    }
-
-    public void ServerShoot(int bulletPrefabIndex, int numberOfBullets, float bulletSpeed, uint playerNetId)
-    {
-        for (int i = 0; i < numberOfBullets; i++)
-        {
-            GameObject bulletPrefab = NetworkManager.singleton.spawnPrefabs[bulletPrefabIndex].gameObject;
-            GameObject bullet = Instantiate(bulletPrefab, firePoints[i].position, firePoints[i].rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(firePoints[i].up * bulletSpeed, ForceMode2D.Impulse);
-            Bullet bulletScript = bullet.GetComponent<Bullet>();
-            bulletScript.playerNetId = playerNetId;
-            GameObject audioObjectInstantiated = Instantiate(bulletScript.audioObject, firePoints[i].position, firePoints[i].rotation);
-            NetworkServer.Spawn(audioObjectInstantiated);
-            NetworkServer.Spawn(bullet);
         }
     }
 }
