@@ -28,6 +28,15 @@ public class PlayerController : NetworkBehaviour
         GameManager.Instance.PlayerInstances.Add(gameObject);
     }
 
+    [ServerCallback]
+    private void Start()
+    {
+        for (int i = 0; i < TechTreeManager.Instance.techPanels.Count; i++)
+        {
+            TechTreeManager.Instance.techPanels[i].gameObject.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
+        }
+    }
+
     void Update()
     {
         if (!isLocalPlayer) return;
