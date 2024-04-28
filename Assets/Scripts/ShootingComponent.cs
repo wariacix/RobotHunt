@@ -26,6 +26,11 @@ public class ShootingComponent : MonoBehaviour
 
     private void Update()
     {
+        if (gameObject.GetComponent<Turret>() != null)
+        {
+            weapons[0].isSelected = true;
+            return;
+        }
         if (UIManager.Instance.IsBuying == false)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -76,7 +81,7 @@ public class ShootingComponent : MonoBehaviour
                     UIManager.Instance.ammoText.color = weapons[i].textColor;
                     UIManager.Instance.ammoText.text = weapons[i].ammo.ToString();
 
-                    if (weapons[i].isSelected && weapons[i].isAutomatic && Input.GetButton("Fire1"))
+                    if (weapons[i].isSelected && weapons[i].isAutomatic && Input.GetButton("Fire1") && gameObject.GetComponent<Turret>() == null)
                     {
                         if (weapons[i].shootClock >= weapons[i].reloadTime && weapons[i].ammo > 0)
                         {
@@ -85,7 +90,7 @@ public class ShootingComponent : MonoBehaviour
                             Shoot(weapons[i].bullets, weapons[i].bulletSpeed);
                         }
                     }
-                    else if (weapons[i].isSelected && Input.GetButtonDown("Fire1"))
+                    else if (weapons[i].isSelected && Input.GetButtonDown("Fire1") && gameObject.GetComponent<Turret>() == null)
                     {
                         if (weapons[i].ammo > 0)
                         {

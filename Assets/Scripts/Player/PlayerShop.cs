@@ -8,11 +8,12 @@ using UnityEngine.UI;
 public class PlayerShop : MonoBehaviour
 {
     [SerializeField] private List<GameObject> shop;
-    [HideInInspector] public int gold = 0;
+    [HideInInspector] public int gold = 100000;
     public bool isPlacing;
 
     private void Start()
     {
+        gold = 100000;
         GameManager.Instance.buttons[0].onClick.AddListener(delegate { BuyAmmo(100, 90, 0); });
         GameManager.Instance.buttons[1].onClick.AddListener(delegate { BuyAmmo(150, 90, 1); });
         GameManager.Instance.buttons[2].onClick.AddListener(delegate { BuyAmmo(250, 20, 2); });

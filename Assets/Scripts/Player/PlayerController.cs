@@ -12,14 +12,11 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D playerRb;
 
-
     Vector2 movement;
     Vector2 mousePos;
 
-
     private void Awake()
     {
-        this.enabled = true;
         CameraScript.Instance.pos = transform;
     }
 
@@ -28,6 +25,11 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         ShootingComponent shooting = gameObject.GetComponent<ShootingComponent>();
+
+
+        Vector2 lookDir = mousePos - (Vector2)transform.position;
+        float rotAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        playerRb.rotation = rotAngle;
 
         mousePos = UIManager.Instance.CameraInstance.ScreenToWorldPoint(Input.mousePosition);
 
@@ -57,15 +59,11 @@ public class PlayerController : MonoBehaviour
             playerRb.velocity = new Vector2(0f, 0f);
             playerRb.angularVelocity = 0f;
         }
-
-        Vector2 lookDir = mousePos - (Vector2)transform.position;
-        float rotAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        playerRb.rotation = rotAngle;
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        playerRb.velocity = new Vector2(0f, 0f);
-    }
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    playerRb.velocity = new Vector2(0f, 0f);
+    //}
 }

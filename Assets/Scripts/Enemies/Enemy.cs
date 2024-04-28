@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         hitClock += Time.deltaTime;
-        Quaternion.LookRotation(GameManager.Instance.PlayerInstances[0].transform.position);
         gameObject.transform.rotation = new Quaternion(0, 0, gameObject.transform.rotation.z, gameObject.transform.rotation.w);
 
         hpRectTransform.position = transform.position + new Vector3(0,0.55f,0);

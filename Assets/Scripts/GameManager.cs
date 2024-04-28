@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         Physics2D.IgnoreLayerCollision(19, 20);
         Physics2D.IgnoreLayerCollision(20, 19);
         Physics2D.IgnoreLayerCollision(19, 0);
+        PlayerObject.GetComponent<PlayerController>().enabled = true;
     }
 
     public static void Exit()

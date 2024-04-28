@@ -108,9 +108,6 @@ GameObject:
   - component: {fileID: 7293156047703698489}
   - component: {fileID: -8799959897280204713}
   - component: {fileID: -3242662612542983966}
-  - component: {fileID: 623314871936962285}
-  - component: {fileID: 1475190366664392090}
-  - component: {fileID: 8010835997660790273}
   - component: {fileID: -8212346109471264689}
   - component: {fileID: 826276906872258882}
   - component: {fileID: 4961942128194382639}
@@ -225,9 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27908d135971f8047bfc11432d54b3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   movingSpeed: 5.5
   playerRb: {fileID: 7293156047703698490}
 --- !u!58 &7293156047703698489
@@ -258,9 +252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50a9ee705112214c83019c1d0d1b337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   maxhp: 300
   hp: 300
 --- !u!82 &-3242662612542983966
@@ -359,93 +350,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &623314871936962285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7293156047703698492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  _assetId: 2688201030
-  serverOnly: 0
-  visible: 0
-  hasSpawned: 0
---- !u!114 &1475190366664392090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7293156047703698492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 1
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 7293156047703698471}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  coordinateSpace: 1
-  sendIntervalMultiplier: 1
-  timelineOffset: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  onlySyncOnChangeCorrectionMultiplier: 0.75
-  rotationSensitivity: 0.01
-  compressRotation: 0
-  positionPrecision: 0.01
-  scalePrecision: 0.01
---- !u!114 &8010835997660790273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7293156047703698492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ec4f7556ca1e4b55a3381fc6a02b1bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 1
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 7293156047703698471}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  coordinateSpace: 0
-  sendIntervalMultiplier: 1
-  timelineOffset: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  onlySyncOnChangeCorrectionMultiplier: 0.75
-  rotationSensitivity: 0.01
-  compressRotation: 0
-  positionPrecision: 0.01
-  scalePrecision: 0.01
 --- !u!114 &-8212346109471264689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,9 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccab513d77a6ce54f8eb0d8a93e530b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   weapons:
   - {fileID: 11400000, guid: 48260df346947904e836981ba14d6bba, type: 2}
   - {fileID: 11400000, guid: 49f91c99d1aaee840aa98e3d0f3016ac, type: 2}
@@ -483,9 +384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c0e98cdc6566a4c95313ab6db054ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
   shop:
   - {fileID: 3149737570086192315, guid: 39916ad008fd24f47a8b2e83e7f159b5, type: 3}
   - {fileID: 3149737570086192315, guid: fdda59a94f5c548429362d0c900adb23, type: 3}
@@ -534,7 +432,7 @@ MonoBehaviour:
   - {x: -0.3143838, y: -0.31294456, z: 0}
   m_ShapePathHash: 1635494688
   m_Mesh: {fileID: 0}
-  m_InstanceId: 45470
+  m_InstanceId: 58926
   m_LocalBounds:
     m_Center: {x: 0, y: -0.0020174682, z: 0}
     m_Extent: {x: 0.5, y: 0.3762412, z: 0}
